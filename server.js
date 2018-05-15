@@ -1,3 +1,4 @@
+// --- Main file ---
 const express = require('express');
 const server = express();
 const hbs = require('hbs');
