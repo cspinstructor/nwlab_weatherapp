@@ -46,7 +46,26 @@ const getAllData = () => {
   });
 };
 
+const deleteAll = () => {
+  return new Promise((resolve, reject) => {
+    MongoClient.connect('mongodb://localhost:27017', {useNewUrlParser: true}, (err, client) => {
+      if (err) {
+        reject('Unable to connect to MongoDB');
+      }
 
+      console.log('Connected to MongoDB');
+      const db = client.db('WeatherApp');
+
+      db.collection('WeatherCollection').remove({}).then( (result) => {
+        resolve(result);
+      }, (err) => {
+        reject('Unable to delete');
+      });
+
+      client.close();
+    });
+  });
+};
 
 
 
@@ -54,4 +73,5 @@ const getAllData = () => {
 module.exports = {
   saveData,
   getAllData,
+  deleteAll,
 }
