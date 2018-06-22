@@ -5,6 +5,7 @@ const argv = yargs
 .options('address')
 .argv;
 
+// just for github test
 const addr = argv.address;
 
 const locationReq = `https://maps.googleapis.com/maps/api/geocode/json?address=${addr}&key=AIzaSyAn7h3tsW_p0md5iISNFzLcJDoRGRgjWPg`;
@@ -22,5 +23,5 @@ axios.get(locationReq).then((response) => {
   console.log(`${temperature} Celsius`);
 })
 .catch((error) => {
-  console.log(error.code);
+  console.log('Error', error.code);
 });
